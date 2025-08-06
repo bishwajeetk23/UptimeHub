@@ -8,7 +8,7 @@ async function  main(){
             id: true
         }
     });
-    console.log("Added");
+    
     await xBulkAdd(websites.map(website => ({
         url:website.url,
         id: website.id
@@ -17,6 +17,6 @@ async function  main(){
 
 setInterval(()=>{
     main();
-},3000);
+},3 * 1000 * 60);
 
 main();

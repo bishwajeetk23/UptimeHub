@@ -1,0 +1,23 @@
+{
+  "name": "worker",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "dev": "bun index.ts"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "redisStream": "*",
+    "store": "*"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/axios": "^0.14.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
