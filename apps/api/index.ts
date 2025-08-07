@@ -55,6 +55,16 @@ app.get('/status/:websiteId', authMiddleware ,async (req,res)=>{
 
 });
 
+app.get('/websites', authMiddleware, async (req,res)=>{
+    const websites = await prismaClient.website.findMany({
+        where:{
+            userId: req.userId
+        }
+    });
+    res.status(200).json({
+        websites
+    });
+});
 app.post('/user/signup', async (req,res)=>{
     // check req structure using zod
     // check pre exit user
