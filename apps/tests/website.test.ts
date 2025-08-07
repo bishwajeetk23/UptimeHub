@@ -105,3 +105,34 @@ describe("Can fetch website", () => {
         }
     })
 })
+describe('can fetch own websites', () => { 
+    let token: string, userId: string;
+
+    beforeAll(async () => {
+        const user = await createUser();
+        token = user.jwt;
+        userId = user.id;
+    });
+    it('abel to fetch its own websites', async ()=>{
+        await axios.post(`${BACKEND_URL}/website`, {
+            url: "https://google.com/"
+        }, {
+            headers: {
+                Authorization: token
+            }
+        });
+        await axios.post(`${BACKEND_URL}/website`, {
+            url: "https://facebook.com/"
+        }, {
+            headers: {
+                Authorization: token
+            }
+        });
+        const response = await axios.get(`${BACKEND_URL}/websites`,{
+            headers: {
+                Authorization: token
+            }
+        });
+        expect(response.data.websites.length==2,"Incorect number of websites created");
+    })
+ })
